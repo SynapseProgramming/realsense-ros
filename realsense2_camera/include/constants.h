@@ -7,7 +7,7 @@
 
 #define REALSENSE_ROS_MAJOR_VERSION    2
 #define REALSENSE_ROS_MINOR_VERSION    2
-#define REALSENSE_ROS_PATCH_VERSION    3
+#define REALSENSE_ROS_PATCH_VERSION    4
 
 #define STRINGIFY(arg) #arg
 #define VAR_ARG_STRING(arg) STRINGIFY(arg)
@@ -37,6 +37,7 @@ namespace realsense2_camera
 
     const bool ALIGN_DEPTH    = false;
     const bool POINTCLOUD     = false;
+    const bool ALLOW_NO_TEXTURE_POINTS = false;
     const bool SYNC_FRAMES    = false;
 
     const int IMAGE_WIDTH     = 640;
