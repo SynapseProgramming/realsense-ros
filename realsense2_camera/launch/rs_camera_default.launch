@@ -1,23 +1,23 @@
 <launch>
   <arg name="serial_no"           default=""/>
-  <arg name="json_file_path"      default="/home/w1421-02/catkin_ws/src/realsense-ros/realsense2_camera/json/high_accuracy.json"/>
+  <arg name="json_file_path"      default=""/>
   <arg name="camera"              default="camera"/>
   <arg name="tf_prefix"           default="$(arg camera)"/>
 
-  <arg name="fisheye_width"       default="848"/> <!--848 -->
+  <arg name="fisheye_width"       default="640"/> <!--848 -->
   <arg name="fisheye_height"      default="480"/>
   <arg name="enable_fisheye"      default="true"/>
 
-  <arg name="depth_width"         default="848"/>
+  <arg name="depth_width"         default="640"/>
   <arg name="depth_height"        default="480"/>
   <arg name="enable_depth"        default="true"/>
 
-  <arg name="infra_width"        default="848"/>
+  <arg name="infra_width"        default="640"/>
   <arg name="infra_height"       default="480"/>
   <arg name="enable_infra1"       default="true"/>
   <arg name="enable_infra2"       default="true"/>
 
-  <arg name="color_width"         default="848"/>
+  <arg name="color_width"         default="640"/>
   <arg name="color_height"        default="480"/>
   <arg name="enable_color"        default="true"/>
 
