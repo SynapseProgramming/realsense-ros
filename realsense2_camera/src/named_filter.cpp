@@ -282,6 +282,9 @@ void PointcloudFilter::Publish(rs2::points pc, const rclcpp::Time& t, const rs2:
         modifier.resize(valid_count);
     }
     {
+        // TODO: add in voxel grid filter here
+
+    // sensor_msgs::msg::PointCloud2::UniquePtr msg_pointcloud = std::make_unique<sensor_msgs::msg::PointCloud2>();
         std::lock_guard<std::mutex> lock_guard(_mutex_publisher);
         if (_pointcloud_publisher)
             _pointcloud_publisher->publish(std::move(msg_pointcloud));

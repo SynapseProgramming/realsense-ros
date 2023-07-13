@@ -101,7 +101,11 @@ if(SET_USER_BREAK_AT_STARTUP)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DBPDEBUG")
 endif()
 
+find_package(PCL REQUIRED QUIET COMPONENTS common features filters io segmentation surface)
 
+
+find_package(pcl_conversions REQUIRED)
+find_package(pcl_msgs REQUIRED)
 find_package(ament_cmake REQUIRED)
 find_package(builtin_interfaces REQUIRED)
 find_package(cv_bridge REQUIRED)
@@ -232,6 +236,8 @@ set(dependencies
   tf2
   realsense2
   tf2_ros
+  PCL
+  pcl_msgs
   diagnostic_updater
 )
 
