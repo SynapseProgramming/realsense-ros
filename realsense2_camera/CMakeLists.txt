@@ -222,6 +222,7 @@ add_library(${PROJECT_NAME} SHARED
 
 target_link_libraries(${PROJECT_NAME}
     ${realsense2_LIBRARY}
+    ${PCL_LIBRARIES}
     )
 
 set(dependencies
