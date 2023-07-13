@@ -80,6 +80,7 @@ PointcloudFilter::PointcloudFilter(std::shared_ptr<rs2::filter> filter, rclcpp::
     _ordered_pc(ORDERED_PC)
     {
         setParameters();
+        voxelfilter.setLeafSize(0.04f, 0.04f, 0.04f);
     }
 
 void PointcloudFilter::setParameters()
@@ -282,16 +283,13 @@ void PointcloudFilter::Publish(rs2::points pc, const rclcpp::Time& t, const rs2:
         modifier.resize(valid_count);
     }
     {
-        // TODO: add in voxel grid filter here
 
-    // sensor_msgs::msg::PointCloud2::UniquePtr msg_pointcloud = std::make_unique<sensor_msgs::msg::PointCloud2>();
 
     pcl_conversions::toPCL(*msg_pointcloud, pclcloud);
 
     pcl::PCLPointCloud2ConstPtr inpPclPtr =
         std::make_shared<pcl::PCLPointCloud2>(pclcloud);
     voxelfilter.setInputCloud(inpPclPtr);
-    voxelfilter.setLeafSize(0.04f, 0.04f, 0.04f);
     voxelfilter.filter(pclcloud);
     pcl_conversions::fromPCL(pclcloud, *msg_pointcloud);
 
