@@ -158,14 +158,6 @@
    ```bash
    colcon build
    ```
-
-  -  Source environment
-   ```bash
-   ROS_DISTRO=<YOUR_SYSTEM_ROS_DISTRO>  # set your ROS_DISTRO: iron, humble
-   source /opt/ros/$ROS_DISTRO/setup.bash
-   cd ~/ros2_ws
-   . install/local_setup.bash
-   ```
   
   </details>
 
