@@ -98,19 +98,34 @@
     Step 2: Install latest Intel&reg; RealSense&trade; SDK 2.0
   </summary>
   
-- #### Option 1: Install librealsense2 debian package from Intel servers
-  - Jetson users - use the [Jetson Installation Guide](https://github.com/IntelRealSense/librealsense/blob/master/doc/installation_jetson.md)
-  - Otherwise, install from [Linux Debian Installation Guide](https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linux.md#installing-the-packages)
-    - In this case treat yourself as a developer: make sure to follow the instructions to also install librealsense2-dev and librealsense2-dkms packages
-  
-- #### Option 2: Install librealsense2 (without graphical tools and examples) debian package from ROS servers:
-  - [Configure](http://wiki.ros.org/Installation/Ubuntu/Sources) your Ubuntu repositories
-  - Install all realsense ROS packages by ```sudo apt install ros-<ROS_DISTRO>-librealsense2*```
-    - For example, for Humble distro: ```sudo apt install ros-humble-librealsense2*```
+- #### Install librealsense2 debian package from Intel servers
 
-- #### Option 3: Build from source
-  - Download the latest [Intel&reg; RealSense&trade; SDK 2.0](https://github.com/IntelRealSense/librealsense/releases/tag/v2.53.1)
-  - Follow the instructions under [Linux Installation](https://github.com/IntelRealSense/librealsense/blob/master/doc/installation.md)
+  - Register the server's public key:
+    ```
+    sudo mkdir -p /etc/apt/keyrings
+    ```
+    ```
+    curl -sSf https://librealsense.intel.com/Debian/librealsense.pgp | sudo tee /etc/apt/keyrings/librealsense.pgp > /dev/null
+    ```
+  - Make sure apt HTTPS support is installed:
+  ```sudo apt-get install apt-transport-https```
+   - Add the server to the list of repositories:
+   ```
+   echo "deb [signed-by=/etc/apt/keyrings/librealsense.pgp] https://librealsense.intel.com/Debian/apt-repo `lsb_release -cs` main" | \
+   sudo tee /etc/apt/sources.list.d/librealsense.list
+   ```
+   ```
+   sudo apt-get update
+   ```
+   - Install the libraries
+  ```sudo apt-get install librealsense2-dkms```  
+  ```sudo apt-get install librealsense2-utils```
+  ```sudo apt-get install librealsense2-dev```
+  ```sudo apt-get install librealsense2-dbg```
+   - Reconnect the Intel RealSense depth camera and run: `realsense-viewer` to verify the installation.
+     
+    
+  
 
 </details>
   
@@ -119,25 +134,18 @@
     Step 3: Install Intel&reg; RealSense&trade; ROS2 wrapper
   </summary>
   
-#### Option 1: Install debian package from ROS servers
-  - [Configure](http://wiki.ros.org/Installation/Ubuntu/Sources) your Ubuntu repositories
-  - Install all realsense ROS packages by ```sudo apt install ros-<ROS_DISTRO>-realsense2-*```
-  - For example, for Humble distro: ```sudo apt install ros-humble-realsense2-*```
   
-#### Option 2: Install from source
-  
-  - Create a ROS2 workspace
-      ```bash
-      mkdir -p ~/ros2_ws/src
-      cd ~/ros2_ws/src/
-      ```
-  
-  - Clone the latest ROS2 Intel&reg; RealSense&trade;  wrapper from [here](https://github.com/IntelRealSense/realsense-ros.git) into '~/ros2_ws/src/'
+#### Install from source
+    
+  - Clone the latest ROS2 Intel&reg; RealSense&trade;  wrapper into '~/ros2_ws/src/'
       ```bashrc
-      git clone https://github.com/IntelRealSense/realsense-ros.git -b ros2-development
+      git clone https://github.com/SynapseProgramming/realsense-ros.git -b ros2-development
+      
+      ```
+ - navigate back to the parent ros2_ws directory
+      ```
       cd ~/ros2_ws
       ```
-  
   - Install dependencies
    ```bash
    sudo apt-get install python3-rosdep -y

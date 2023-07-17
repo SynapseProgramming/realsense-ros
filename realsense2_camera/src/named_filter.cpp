@@ -80,6 +80,7 @@ PointcloudFilter::PointcloudFilter(std::shared_ptr<rs2::filter> filter, rclcpp::
     _ordered_pc(ORDERED_PC)
     {
         setParameters();
+        voxelfilter.setLeafSize(0.04f, 0.04f, 0.04f);
     }
 
 void PointcloudFilter::setParameters()
@@ -282,6 +283,17 @@ void PointcloudFilter::Publish(rs2::points pc, const rclcpp::Time& t, const rs2:
         modifier.resize(valid_count);
     }
     {
+
+
+    pcl_conversions::toPCL(*msg_pointcloud, pclcloud);
+
+    pcl::PCLPointCloud2ConstPtr inpPclPtr =
+        std::make_shared<pcl::PCLPointCloud2>(pclcloud);
+    voxelfilter.setInputCloud(inpPclPtr);
+    voxelfilter.filter(pclcloud);
+    pcl_conversions::fromPCL(pclcloud, *msg_pointcloud);
+
+
         std::lock_guard<std::mutex> lock_guard(_mutex_publisher);
         if (_pointcloud_publisher)
             _pointcloud_publisher->publish(std::move(msg_pointcloud));

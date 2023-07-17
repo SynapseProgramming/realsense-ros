@@ -20,6 +20,10 @@
 #include <sensor_params.h>
 #include <sensor_msgs/msg/point_cloud2.hpp>
 #include <ros_sensor.h>
+#include <pcl/filters/voxel_grid.h>
+#include <pcl_conversions/pcl_conversions.h>
+#include <pcl/PCLPointCloud2.h>
+
 
 namespace realsense2_camera
 {
@@ -66,7 +70,9 @@ namespace realsense2_camera
             bool _ordered_pc;
             std::mutex _mutex_publisher;
             rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr _pointcloud_publisher;
+            pcl::VoxelGrid<pcl::PCLPointCloud2> voxelfilter;
             std::string _pointcloud_qos;
+            pcl::PCLPointCloud2 pclcloud;
     };
 
     class AlignDepthFilter : public NamedFilter
