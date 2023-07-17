@@ -139,7 +139,7 @@
     
   - Clone the latest ROS2 Intel&reg; RealSense&trade;  wrapper into '~/ros2_ws/src/'
       ```bashrc
-      git clone https://github.com/SynapseProgramming/realsense-ros.git -b ros2-development
+      git clone https://github.com/SynapseProgramming/realsense-ros.git
       
       ```
  - navigate back to the parent ros2_ws directory
