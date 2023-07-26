@@ -136,6 +136,9 @@
   
   
 #### Install from source
+
+  - Install humble perception
+   ```sudo apt install ros-humble-perception```
     
   - Clone the latest ROS2 Intel&reg; RealSense&trade;  wrapper into '~/ros2_ws/src/'
       ```bashrc
