@@ -136,10 +136,13 @@
   
   
 #### Install from source
+
+  - Install humble perception
+   ```sudo apt install ros-humble-perception```
     
   - Clone the latest ROS2 Intel&reg; RealSense&trade;  wrapper into '~/ros2_ws/src/'
       ```bashrc
-      git clone https://github.com/SynapseProgramming/realsense-ros.git -b ros2-development
+      git clone https://github.com/SynapseProgramming/realsense-ros.git
       
       ```
  - navigate back to the parent ros2_ws directory
@@ -157,14 +160,6 @@
   - Build
    ```bash
    colcon build
-   ```
-
-  -  Source environment
-   ```bash
-   ROS_DISTRO=<YOUR_SYSTEM_ROS_DISTRO>  # set your ROS_DISTRO: iron, humble
-   source /opt/ros/$ROS_DISTRO/setup.bash
-   cd ~/ros2_ws
-   . install/local_setup.bash
    ```
   
   </details>
