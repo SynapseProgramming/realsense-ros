@@ -239,6 +239,7 @@ set(dependencies
   tf2_ros
   PCL
   pcl_msgs
+  pcl_conversions
   diagnostic_updater
 )
 
